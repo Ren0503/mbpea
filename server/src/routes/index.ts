@@ -7,6 +7,8 @@ import {
     AuthCtrl,
     PostCtrl,
     ChannelCtrl,
+    CommentCtrl,
+    SearchCtrl,
     SettingsCtrl,
     FavoriteCtrl,
 } from '../controllers';
@@ -89,5 +91,18 @@ router.post('/posts/pin', checkIfSuperAdmin, PostCtrl.pin);
  */
 router.post('/favorites/create', checkIfUser, FavoriteCtrl.create);
 router.delete('/favorites/delete', checkIfUser, FavoriteCtrl.delete);
+
+/**
+ * Comments
+ */
+router.post('/comments/create', checkIfUser, CommentCtrl.create);
+router.delete('/comments/delete', checkIfUser, CommentCtrl.delete);
+
+/**
+ * Search
+ */
+router.get('/search/all/:searchQuery', withUser, SearchCtrl.search);
+router.get('/search/users/:searchQuery', withUser, SearchCtrl.searchUsers);
+
 
 export default router;
