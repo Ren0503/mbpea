@@ -6,6 +6,7 @@ import {
     UserCtrl,
     AuthCtrl,
     PostCtrl,
+    ChannelCtrl,
     SettingsCtrl,
     FavoriteCtrl,
 } from '../controllers';
@@ -39,7 +40,6 @@ router.get('/google/callback', AuthCtrl.googleCallback);
 router.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 router.get('/facebook/callback', AuthCtrl.facebookCallback);
 
-
 /**
  * Users
  */
@@ -61,6 +61,16 @@ router.get('/settings/users', checkIfSuperAdmin, SettingsCtrl.users);
 router.get('/settings/users-total', checkIfSuperAdmin, SettingsCtrl.usersTotal);
 router.put('/settings/update-password', checkIfUser, SettingsCtrl.updatePassword);
 router.post('/settings/create-user', checkIfSuperAdmin, SettingsCtrl.createUser);
+
+/**
+ * Channels
+ */
+router.get('/channels', ChannelCtrl.channels);
+router.get('/channels/:name', ChannelCtrl.channelByName);
+router.post('/channels/create', checkIfAdmin, ChannelCtrl.create);
+router.put('/channels/update', checkIfAdmin, ChannelCtrl.update);
+router.delete('/channels/delete', checkIfAdmin, ChannelCtrl.delete);
+router.post('/channels/reorder', checkIfAdmin, ChannelCtrl.reorder);
 
 /**
  * Posts
