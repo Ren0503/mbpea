@@ -5,14 +5,14 @@ export const getAuthUser = async (id: string): Promise<any> => {
     const user = await User.findOneAndUpdate({ _id: id }, { isOnline: true })
         .select('-password')
         .populate({ path: 'posts', options: { sort: { createdAt: 'desc' } } })
-        .populate('likes')
+        .populate('favorites')
         .populate('followers')
         .populate('following')
         .populate({
             path: 'notifications',
             populate: [
                 { path: 'author' },
-                { path: 'like', populate: { path: 'post' } },
+                { path: 'favorite', populate: { path: 'post' } },
                 { path: 'comment', populate: { path: 'post' } },
             ],
             match: { seen: false },
@@ -29,12 +29,12 @@ export const getUserById = async (id: string, hideBannedUser?: boolean): Promise
 
     const user = await User.findOne(query)
         .select('-password')
-        .populate('likes')
+        .populate('favorites')
         .populate('followers')
         .populate('following')
         .populate({
             path: 'notifications',
-            populate: [{ path: 'author' }, { path: 'follow' }, { path: 'like' }, { path: 'comment' }],
+            populate: [{ path: 'author' }, { path: 'follow' }, { path: 'favorite' }, { path: 'comment' }],
         });
 
     return user;
@@ -132,7 +132,7 @@ export const getNewMembers = async (userId?: string): Promise<any> => {
 export const updateUser = async (id: string, fieldsToUpdate: any): Promise<any> => {
     const user = await User.findOneAndUpdate({ _id: id }, { ...fieldsToUpdate }, { new: true })
         .populate('posts')
-        .populate('likes');
+        .populate('favorites');
 
     return user;
 };

@@ -8,7 +8,7 @@ import {
     updateUser,
     updateUserBanned
 } from '../queries';
-import { uploadToCloudinary } from '../utils/cloudinary';
+import { uploadToCloudinary } from '../utils';
 
 const UserController = {
     user: async (req: Request, res: Response): Promise<any> => {
