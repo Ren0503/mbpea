@@ -10,9 +10,9 @@ const notificationSchema = new mongoose.Schema({
         ref: 'User',
     },
     post: mongoose.Schema.Types.ObjectId,
-    like: {
+    favorite: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Like',
+        ref: 'Favorite',
     },
     follow: {
         type: mongoose.Schema.Types.ObjectId,

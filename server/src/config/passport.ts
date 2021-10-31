@@ -5,7 +5,7 @@ import { Strategy as FacebookStrategy } from 'passport-facebook';
 import { Strategy as GitHubStrategy } from 'passport-github2';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import { User } from '../models';
-import { updateUser } from '../db';
+import { updateUser } from '../queries';
 import {
     getUserInfoFromFacebook,
     getUserInfoFromGithub,

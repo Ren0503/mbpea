@@ -7,7 +7,7 @@ import {
     onlineUsers,
     updateUser,
     updateUserBanned
-} from '../db';
+} from '../queries';
 import { uploadToCloudinary } from '../utils/cloudinary';
 
 const UserController = {

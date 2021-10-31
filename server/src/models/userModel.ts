@@ -65,9 +65,9 @@ const userSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post',
     }],
-    likes: [{
+    favorites: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Like',
+        ref: 'Favorite',
     }],
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -113,7 +113,7 @@ export interface IUser extends Document {
     coverImagePublicId: string;
     isOnline: boolean;
     posts: string[];
-    likes: string[];
+    favorites: string[];
     comments: string[];
     followers: string[];
     following: string[];

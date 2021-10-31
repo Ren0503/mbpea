@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const likeSchema = new mongoose.Schema({
+const favoriteSchema = new mongoose.Schema({
     post: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post',
@@ -13,4 +13,4 @@ const likeSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-export default mongoose.model('Like', likeSchema);
+export default mongoose.model('Favorite', favoriteSchema);
