@@ -6,7 +6,8 @@ import {
     UserCtrl,
     AuthCtrl,
     PostCtrl,
-    SettingsCtrl
+    SettingsCtrl,
+    FavoriteCtrl,
 } from '../controllers';
 import {
     checkIfAdmin,
@@ -72,5 +73,11 @@ router.post('/posts/create', checkIfUser, multerUpload.single('image'), PostCtrl
 router.put('/posts/update', checkIfUser, multerUpload.single('image'), PostCtrl.update);
 router.delete('/posts/delete', checkIfUser, PostCtrl.delete);
 router.post('/posts/pin', checkIfSuperAdmin, PostCtrl.pin);
+
+/**
+ * Favorites
+ */
+router.post('/favorites/create', checkIfUser, FavoriteCtrl.create);
+router.delete('/favorites/delete', checkIfUser, FavoriteCtrl.delete);
 
 export default router;
