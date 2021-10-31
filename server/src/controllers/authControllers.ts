@@ -16,7 +16,7 @@ import { SocialProvider } from '../config/passport';
 import { EmailRegex, ErrorCodes, ErrorMessages } from '../constants';
 import { sendEmail, getEmailTemplate, checkEmailVerification } from '../utils';
 
-const AuthController = {
+const AuthCtrl = {
     authUser: async (req: Request, res: Response): Promise<any> => {
         passport.authenticate('jwt', { session: false }, async (err, user) => {
             if (!user) {
@@ -301,4 +301,4 @@ const AuthController = {
     },
 };
 
-export default AuthController;
+export default AuthCtrl;

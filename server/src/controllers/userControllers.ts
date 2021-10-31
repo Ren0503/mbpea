@@ -10,7 +10,7 @@ import {
 } from '../queries';
 import { uploadToCloudinary } from '../utils';
 
-const UserController = {
+const UserCtrl = {
     user: async (req: Request, res: Response): Promise<any> => {
         const { id } = req.params;
         const user = await getUserById(id, true);
@@ -79,4 +79,4 @@ const UserController = {
     },
 };
 
-export default UserController;
+export default UserCtrl;

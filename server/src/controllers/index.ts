@@ -1,2 +1,4 @@
-export { default as UserController } from './userControllers';
-export { default as AuthController } from './authControllers';
+export { default as UserCtrl } from './userControllers';
+export { default as AuthCtrl } from './authControllers';
+export { default as PostCtrl } from './postControllers';
+export { default as SettingsCtrl } from './settingsControllers';

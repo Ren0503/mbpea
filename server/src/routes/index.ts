@@ -2,7 +2,12 @@ import { Request, Response, Router } from 'express';
 import multer from 'multer';
 import passport from 'passport';
 
-import { UserController, AuthController } from '../controllers';
+import {
+    UserCtrl,
+    AuthCtrl,
+    PostCtrl,
+    SettingsCtrl
+} from '../controllers';
 import {
     checkIfAdmin,
     checkIfSuperAdmin,
@@ -14,32 +19,58 @@ const router = Router();
 const storage = multer.memoryStorage();
 const multerUpload = multer({ storage });
 
+router.get('/', (req: Request, res: Response) => res.send('API Running'));
+
 /**
  * Authentication
  */
-router.get('/auth-user', AuthController.authUser);
-router.post('/register', AuthController.register);
-router.post('/login', AuthController.login);
-router.post('/logout', AuthController.logout);
-router.post('/forgot-password', AuthController.forgotPassword);
-router.post('/reset-password', AuthController.resetPassword);
-router.post('/email-verify', AuthController.emailVerify);
+router.get('/auth-user', AuthCtrl.authUser);
+router.post('/register', AuthCtrl.register);
+router.post('/login', AuthCtrl.login);
+router.post('/logout', AuthCtrl.logout);
+router.post('/forgot-password', AuthCtrl.forgotPassword);
+router.post('/reset-password', AuthCtrl.resetPassword);
+router.post('/email-verify', AuthCtrl.emailVerify);
 router.get('/github', passport.authenticate('github', { scope: ['user:email'] }));
-router.get('/github/callback', AuthController.githubCallback);
+router.get('/github/callback', AuthCtrl.githubCallback);
 router.get('/google', passport.authenticate('google', { scope: 'profile email' }));
-router.get('/google/callback', AuthController.googleCallback);
+router.get('/google/callback', AuthCtrl.googleCallback);
 router.get('/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-router.get('/facebook/callback', AuthController.facebookCallback);
+router.get('/facebook/callback', AuthCtrl.facebookCallback);
 
 
 /**
  * Users
  */
-router.get('/users/get-users', withUser, UserController.getUsers);
-router.get('/users/online-users', withUser, UserController.onlineUsers);
-router.get('/users/new-members', withUser, UserController.newMembers);
-router.post('/users/upload-photo', [checkIfUser, multerUpload.single('image')], UserController.uploadPhoto);
-router.get('/users/:id', UserController.user);
-router.delete('/users/ban-user', checkIfSuperAdmin, UserController.banUser);
+router.get('/users/get-users', withUser, UserCtrl.getUsers);
+router.get('/users/online-users', withUser, UserCtrl.onlineUsers);
+router.get('/users/new-members', withUser, UserCtrl.newMembers);
+router.post('/users/upload-photo', [checkIfUser, multerUpload.single('image')], UserCtrl.uploadPhoto);
+router.get('/users/:id', UserCtrl.user);
+router.delete('/users/ban-user', checkIfSuperAdmin, UserCtrl.banUser);
+
+/**
+ * Settings
+ */
+router.get('/settings', SettingsCtrl.settings);
+router.put('/settings/update-community', checkIfAdmin, SettingsCtrl.updateCommunity);
+router.post('/settings/upload-logo', [checkIfAdmin, multerUpload.single('image')], SettingsCtrl.uploadLogo);
+router.put('/settings/update-user', checkIfUser, SettingsCtrl.updateProfile);
+router.get('/settings/users', checkIfSuperAdmin, SettingsCtrl.users);
+router.get('/settings/users-total', checkIfSuperAdmin, SettingsCtrl.usersTotal);
+router.put('/settings/update-password', checkIfUser, SettingsCtrl.updatePassword);
+router.post('/settings/create-user', checkIfSuperAdmin, SettingsCtrl.createUser);
+
+/**
+ * Posts
+ */
+router.get('/posts/channel/:channelId', PostCtrl.postsByChannelId);
+router.get('/posts/author/:authorId', PostCtrl.postsByAuthorId);
+router.get('/posts/follow', withUser, PostCtrl.postsByFollowing);
+router.get('/posts/:id', PostCtrl.postById);
+router.post('/posts/create', checkIfUser, multerUpload.single('image'), PostCtrl.create);
+router.put('/posts/update', checkIfUser, multerUpload.single('image'), PostCtrl.update);
+router.delete('/posts/delete', checkIfUser, PostCtrl.delete);
+router.post('/posts/pin', checkIfSuperAdmin, PostCtrl.pin);
 
 export default router;
