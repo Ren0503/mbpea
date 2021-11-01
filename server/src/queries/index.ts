@@ -5,3 +5,5 @@ export * from './commentQueries';
 export * from './favoriteQueries';
 export * from './settingsQueries';
 export * from './searchQueries';
+export * from './followQueries';
+export * from './notificationQueries';

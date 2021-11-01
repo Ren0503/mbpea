@@ -6,3 +6,5 @@ export { default as CommentCtrl } from './commentControllers';
 export { default as SettingsCtrl } from './settingsControllers';
 export { default as FavoriteCtrl } from './favoriteControllers';
 export { default as SearchCtrl } from './searchControllers';
+export { default as FollowCtrl } from './followControllers';
+export { default as NotificationCtrl } from './notificationControllers';

@@ -241,7 +241,7 @@ export const sendEmail = ({ to, subject, html }) => {
 
         nodemailerMailgun.sendMail(
             {
-                from: 'Orca <no-reply@getorca.org>',
+                from: 'Inside <no-reply@inside.org>',
                 to,
                 subject,
                 html,

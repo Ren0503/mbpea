@@ -9,8 +9,10 @@ import {
     ChannelCtrl,
     CommentCtrl,
     SearchCtrl,
+    FollowCtrl,
     SettingsCtrl,
     FavoriteCtrl,
+    NotificationCtrl,
 } from '../controllers';
 import {
     checkIfAdmin,
@@ -97,6 +99,23 @@ router.delete('/favorites/delete', checkIfUser, FavoriteCtrl.delete);
  */
 router.post('/comments/create', checkIfUser, CommentCtrl.create);
 router.delete('/comments/delete', checkIfUser, CommentCtrl.delete);
+
+/**
+ * Notifications
+ */
+router.get('/notifications', checkIfUser, NotificationCtrl.notificationsByUserId);
+router.get('/notifications/author-and-user/:userId', checkIfUser, NotificationCtrl.notificationByAuthorAndUserId);
+router.post('/notifications/create', checkIfUser, NotificationCtrl.create);
+router.delete('/notifications/delete', checkIfUser, NotificationCtrl.delete);
+router.put('/notifications/seen', checkIfUser, NotificationCtrl.updateNotificationSeen);
+router.put('/notifications/messages-seen', checkIfUser, NotificationCtrl.updateMessagesNotificationSeen);
+
+
+/**
+ * Follow
+ */
+router.post('/follow/create', checkIfUser, FollowCtrl.create);
+router.delete('/follow/delete', checkIfUser, FollowCtrl.delete);
 
 /**
  * Search
