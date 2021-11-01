@@ -12,6 +12,7 @@ import {
     FollowCtrl,
     SettingsCtrl,
     FavoriteCtrl,
+    MessageCtrl,
     NotificationCtrl,
 } from '../controllers';
 import {
@@ -110,12 +111,20 @@ router.delete('/notifications/delete', checkIfUser, NotificationCtrl.delete);
 router.put('/notifications/seen', checkIfUser, NotificationCtrl.updateNotificationSeen);
 router.put('/notifications/messages-seen', checkIfUser, NotificationCtrl.updateMessagesNotificationSeen);
 
-
 /**
  * Follow
  */
 router.post('/follow/create', checkIfUser, FollowCtrl.create);
 router.delete('/follow/delete', checkIfUser, FollowCtrl.delete);
+
+/**
+ * Messages
+ */
+router.get('/messages', checkIfUser, MessageCtrl.messages);
+router.post('/messages/create', checkIfUser, MessageCtrl.create);
+router.get('/messages/conversations', checkIfUser, MessageCtrl.conversations);
+router.put('/messages/update-seen', checkIfUser, MessageCtrl.updateMessageSeen);
+
 
 /**
  * Search

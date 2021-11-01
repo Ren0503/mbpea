@@ -1,8 +1,5 @@
 // @ts-nocheck
-import {
-    Follow,
-    User
-} from '../models';
+import { Follow, User } from '../models';
 
 export const followById = async (id: string): Promise<any> => {
     const follow = await Follow.findById(id);

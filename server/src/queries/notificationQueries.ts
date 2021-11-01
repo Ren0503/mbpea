@@ -1,7 +1,6 @@
 // @ts-nocheck
-import Notification from '../models/notification';
 import { NotificationType } from '../constants';
-import { User } from '../models';
+import { User, Notification } from '../models';
 
 export const notificationById = async (id: string): Promise<any> => {
     const notification = await Notification.findById(id);

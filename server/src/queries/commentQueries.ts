@@ -1,9 +1,5 @@
 // @ts-nocheck
-import {
-    User,
-    Post,
-    Comment,
-} from '../models';
+import { User, Post, Comment } from '../models';
 
 export const commentById = async (id: string): Promise<any> => {
     const comment = await Comment.findById(id);

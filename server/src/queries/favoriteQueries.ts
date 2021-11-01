@@ -1,9 +1,5 @@
 // @ts-nocheck
-import {
-    User,
-    Post,
-    Favorite,
-} from '../models';
+import { User, Post, Favorite } from '../models';
 
 export const favoriteById = async (id: string): Promise<any> => {
     const favorite = await Favorite.findById(id);

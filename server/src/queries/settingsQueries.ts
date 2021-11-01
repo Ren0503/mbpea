@@ -1,6 +1,5 @@
 // @ts-nocheck
-import User from '../models/userModel';
-import Settings from '../models/settingModel';
+import { User, Settings } from '../models';
 
 export const getSettings = async (): Promise<any> => {
     const settings = await Settings.findOne({});
