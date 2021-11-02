@@ -7,7 +7,7 @@ import passport from 'passport';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import routes from './routes';
-
+import socket from './utils/socket';
 import { connectDB, initPassport } from './config';
 
 connectDB();
@@ -30,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/', routes);
 const httpServer = createServer(app);
+socket(httpServer);
 
 const PORT = process.env.PORT || process.env.API_PORT;
 

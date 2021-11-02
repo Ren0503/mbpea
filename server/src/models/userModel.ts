@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import mongoose, { Document } from 'mongoose';
-import { UserRole } from '../constants/types';
+import { UserRole } from '../constants';
 
 const userSchema = new mongoose.Schema({
     role: {
