@@ -6,7 +6,7 @@ export const NotificationType = {
 };
 
 export const DefaultCommunity = {
-    communityName: 'Inside',
+    communityName: 'Mpea',
     communityLogo:
         'https://res.cloudinary.com/dsvc4kfvh/image/upload/v1635601985/logo_cg1fgm.png',
     communityLogoPublicId: '',
