@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { UserRole } from 'interfaces';
+import { UserRole } from 'constants/types';
 
 export const redirectToHome = () => {
     return {
